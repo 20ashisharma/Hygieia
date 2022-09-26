@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hygieia-api
+  labels:
+    app: hygieia-api
+spec:
+  replicas: 
+  selector:
+    matchLabels:
+      app: hygieia-api
+  template:
+    metadata:
+      labels:
+        name: hygieia-api
+        app: hygieia-api
+    spec:
+      hostname: hygieia-api
+      containers:
+      - name: hygieia-api
+        image: 7078555411/hygieia-api
+        env:
+        - name: dbhost
+          value: db
+        resources:
+           limits:
+             cpu: 50m
+             memory: 50Mi
+​
+           requests:
+              cpu: 495m
+              memory: 565Mi
+        ports:
+           - containerPort: "8080" 
